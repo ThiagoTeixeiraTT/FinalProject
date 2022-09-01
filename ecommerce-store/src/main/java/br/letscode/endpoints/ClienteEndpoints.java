@@ -26,7 +26,7 @@ public class ClienteEndpoints {
     }
 
     @RequestMapping(path="/cliente", method = RequestMethod.POST)
-    public ResponseEntity novoCliente(@RequestBody ClienteDto cliente) {
+    public ResponseEntity<String> novoCliente(@RequestBody ClienteDto cliente) {
         boolean sucesso = clienteService.novoCliente(cliente);
 
         if(sucesso) {
