@@ -30,34 +30,34 @@ public class ClienteEndpoints {
         boolean sucesso = clienteService.novoCliente(cliente);
 
         if(sucesso) {
-            return new ResponseEntity("Cliente criado com sucesso!", HttpStatus.CREATED);
+            return new ResponseEntity<String>("Cliente criado com sucesso!", HttpStatus.CREATED);
         }
         else {
-            return new ResponseEntity("Criacao do cliente falhou!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Criacao do cliente falhou!", HttpStatus.BAD_REQUEST);
         }
     }
 
     @RequestMapping(path="/cliente", method = RequestMethod.PUT)
-    public ResponseEntity atualizarCliente(@RequestBody Cliente cliente) {
+    public ResponseEntity<String> atualizarCliente(@RequestBody Cliente cliente) {
         boolean sucesso = clienteService.atualizarCliente(cliente);
 
         if(sucesso) {
-            return new ResponseEntity("Cliente atualizado com sucesso!", HttpStatus.CREATED);
+            return new ResponseEntity<String>("Cliente atualizado com sucesso!", HttpStatus.CREATED);
         }
         else {
-            return new ResponseEntity("Atualizacao do cliente falhou!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Atualizacao do cliente falhou!", HttpStatus.BAD_REQUEST);
         }
     }
 
     @RequestMapping(path="/cliente/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity removerCliente(@PathVariable long id) {
+    public ResponseEntity<String> removerCliente(@PathVariable long id) {
         boolean sucesso = clienteService.removerCliente(id);
 
         if(sucesso) {
-            return new ResponseEntity("Cliente deletado com sucesso!", HttpStatus.OK);
+            return new ResponseEntity<String>("Cliente deletado com sucesso!", HttpStatus.OK);
         }
         else {
-            return new ResponseEntity("Remocao do cliente falhou!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Remocao do cliente falhou!", HttpStatus.BAD_REQUEST);
         }
     }
 }

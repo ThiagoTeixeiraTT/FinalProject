@@ -30,38 +30,38 @@ public class ProdutosEndpoints {
     }
 
     @RequestMapping(path="/produto", method = RequestMethod.POST)
-    public ResponseEntity novoProduto(@RequestBody ProdutoDto produto) {
+    public ResponseEntity<String> novoProduto(@RequestBody ProdutoDto produto) {
         boolean sucesso = produtoService.novoProduto(produto);
 
         if(sucesso) {
-            return new ResponseEntity("Produto criado com sucesso!", HttpStatus.CREATED);
+            return new ResponseEntity<String>("Produto criado com sucesso!", HttpStatus.CREATED);
         }
         else {
-            return new ResponseEntity("Criacao do produto falhou!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Criacao do produto falhou!", HttpStatus.BAD_REQUEST);
         }
     }
 
     @RequestMapping(path="/produto", method = RequestMethod.PUT)
-    public ResponseEntity atualizarProduto(@RequestBody Produto produto) {
+    public ResponseEntity<String> atualizarProduto(@RequestBody Produto produto) {
         boolean sucesso = produtoService.atualizarProduto(produto);
 
         if(sucesso) {
-            return new ResponseEntity("Produto atualizado com sucesso!", HttpStatus.CREATED);
+            return new ResponseEntity<String>("Produto atualizado com sucesso!", HttpStatus.CREATED);
         }
         else {
-            return new ResponseEntity("Atualizacao do produto falhou!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Atualizacao do produto falhou!", HttpStatus.BAD_REQUEST);
         }
     }
 
     @RequestMapping(path="/produto/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity removerProduto(@PathVariable long id) {
+    public ResponseEntity<String> removerProduto(@PathVariable long id) {
         boolean sucesso = produtoService.removerProduto(id);
 
         if(sucesso) {
-            return new ResponseEntity("Produto deletado com sucesso!", HttpStatus.OK);
+            return new ResponseEntity<String>("Produto deletado com sucesso!", HttpStatus.OK);
         }
         else {
-            return new ResponseEntity("Remocao do produto falhou!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Remocao do produto falhou!", HttpStatus.BAD_REQUEST);
         }
     }
 }

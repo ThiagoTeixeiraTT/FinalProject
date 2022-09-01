@@ -19,6 +19,6 @@ public class HelloEndpoints {
     @RequestMapping(path="/hello/{nome}", method = RequestMethod.GET)
     public ResponseEntity<String> hello() {
         log.info("Insercao feita com sucesso");
-        return new ResponseEntity("Hello world!", HttpStatus.OK);
+        return new ResponseEntity<String>("Hello world!", HttpStatus.OK);
     }
 }
