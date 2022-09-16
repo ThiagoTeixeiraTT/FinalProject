@@ -8,8 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-//Classe que vai retornar somente o que eh necessario para autenticacao, ao inves de todo o cliente, implementando
-//UserDetails do Spring.
 public class UserPrincipalDetails implements UserDetails {
 
     final Cliente cliente;

@@ -19,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@EnableWebSecurity //Para ter a possibilidade de customizar
+@EnableWebSecurity 
 @EnableGlobalMethodSecurity(
         prePostEnabled = true,
         securedEnabled = true,
@@ -28,30 +28,25 @@ public class WebSecurityConfig {
 
     final UserServiceImpl userDetailsService;
 
-    //Inicializa o servico, que sera utilizado para fazer a autenticacao.
     public WebSecurityConfig(UserServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
 
-    //objeto bean para a criptacao das senhas
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
 
-    //Todas as requests passarao por esse filtron
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        //Criacao do AuthenticationManager, servico que cuida das autenticacoes. No caso, userDetailsService
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
         AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
 
-        http.cors().and().csrf().disable()//Habilita CORS (Cross-origin resource sharing, requests vindas de outro domain sao permitidas) e desabilita CSRF (Cross-site request forgery)
+        http.cors().and().csrf().disable()
                 .authorizeRequests()
-                    //Requests para as URLs e metodos abaixo sao  permitidas SEM AUTENTICACAO
                     .antMatchers(HttpMethod.POST, "/cliente").permitAll()
                     .antMatchers(HttpMethod.PUT, "/cliente").permitAll()
                     .antMatchers(HttpMethod.GET, "/cliente").permitAll()
@@ -59,14 +54,12 @@ public class WebSecurityConfig {
                     .antMatchers(HttpMethod.POST, "/login").permitAll()
                     .antMatchers("/instances/**").permitAll()
                     .antMatchers("/actuator/**").permitAll()
-                .anyRequest().authenticated() //Qualquerr outra requisicao obriga autenticacao
+                .anyRequest().authenticated() 
                 .and()
-                //Filtros para as outras requisicoes, que requerem autenticacao e autorizacaoo
-                .addFilter(new JWTAuthenticationFilter(authenticationManager)) //autenticacao
-                .addFilter(new JWTAuthorizationFilter(authenticationManager)) //autorizacao
-                //Indicar qual authentication manager sera um utilizado
+
+                .addFilter(new JWTAuthenticationFilter(authenticationManager)) 
+                .addFilter(new JWTAuthorizationFilter(authenticationManager)) 
                 .authenticationManager(authenticationManager)
-                //Criar policy
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         return http.build();

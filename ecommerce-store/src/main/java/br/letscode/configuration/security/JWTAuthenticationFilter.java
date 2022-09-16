@@ -20,15 +20,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private AuthenticationManager authenticationManager;
 
-    //Cria URL que recebera a autenticacao
-    //Pagina de login customizada
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
         setFilterProcessesUrl("/login");
     }
 
-    //Quando a pagina /login for acessada, a request sera trazida para aqui, afim de tentar autenticar o valor.
-    //Eh esperado que email e senha sejam passados em um metodo POST para esse /login
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
                                                 HttpServletResponse response) throws AuthenticationException {
@@ -50,7 +46,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     }
 
-    //Caso a autenticacao seja feita com sucesso, cria-se um novo token valido, baseado no email e roles desse email
     @Override
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
@@ -63,7 +58,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .stream().map(role -> role.getAuthority())
                 .collect(Collectors.toList());
 
-        //criar o token
         String token = JwtUtils.createToken(email, roles);
 
         response.getWriter().write(email + ": " +SecurityConstants.TOKEN_PREFIX +" "+ token);

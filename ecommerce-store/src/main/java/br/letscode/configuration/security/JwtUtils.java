@@ -8,7 +8,6 @@ import java.util.List;
 
 public class JwtUtils {
 
-    //Retorna o email vinculado ao JWT token
     public static String getEmail(String token) {
         return Jwts.parser()
                 .setSigningKey(SecurityConstants.SECRET)
@@ -16,7 +15,6 @@ public class JwtUtils {
                 .getBody()
                 .getSubject();
     }
-    //Retorna qual tipo de acesso esse determinado JWT token tem (admin, client...)
     public static List<String> getRoles(String token) {
         return Jwts.parser()
                 .setSigningKey(SecurityConstants.SECRET)
@@ -25,7 +23,6 @@ public class JwtUtils {
                 .get("roles", List.class);
     }
 
-    //Cria um novo JWT token com base no email e os acessos do mesmo
     public static String createToken(String email, List<String> roles) {
         return Jwts.builder()
                 .setSubject(email)
