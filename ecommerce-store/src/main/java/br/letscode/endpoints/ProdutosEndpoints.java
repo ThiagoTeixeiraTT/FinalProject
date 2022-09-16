@@ -7,6 +7,7 @@ import br.letscode.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ public class ProdutosEndpoints {
     ProdutoService produtoService;
     
     // Cria produto.
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "/produto", method = RequestMethod.POST)
     public ResponseEntity<String> novoProduto(@RequestBody ProdutoDto produto) {
         boolean sucesso = produtoService.novoProduto(produto);
@@ -37,6 +39,7 @@ public class ProdutosEndpoints {
     }
     
     // Atualiza produto
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(path = "/produto", method = RequestMethod.PUT)
     public ResponseEntity<String> atualizarProduto(@RequestBody Produto produto) {
         boolean sucesso = produtoService.atualizarProduto(produto);
@@ -49,6 +52,7 @@ public class ProdutosEndpoints {
     }
     
     // Deleta produto por Id.
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(path = "/produto/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<String> removerProduto(@PathVariable long id) {
         boolean sucesso = produtoService.removerProduto(id);
@@ -61,6 +65,7 @@ public class ProdutosEndpoints {
     }
     
     // Retorna produto por Id.
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(path = "/produto/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getProductById(@PathVariable long id) {
         Optional<Produto> produto = produtoService.produtoPorId(id);

@@ -52,5 +52,15 @@ public class Cliente {
         this.perfil = perfil;
     }
 
+    // public Cliente(String nome, String sobrenome, String email, String sexo, String cpf, String senha, String perfil){
+    //     this.nome = nome;
+    //     this.sobrenome = sobrenome;
+    //     this.email = email;
+    //     this.sexo = sexo;
+    //     this.cpf = cpf;
+    //     this.senha = senha;
+    //     this.perfil = PerfilEnum.valueOf(perfil);
+    // }
+
 
 }

@@ -33,7 +33,7 @@ public class ClienteServiceImpl implements ClienteService {
             if (clienteDto.getId() == 0) {
                 clienteDto.setSenha(passwordEncoder.encode(clienteDto.getSenha()));
             }
-            Cliente cliente = new Cliente(clienteDto.getNome(), clienteDto.getSobrenome(), clienteDto.getEmail(), clienteDto.getSexo(), clienteDto.getCpf(), clienteDto.getSenha(), PerfilEnum.CLIENTE);
+            Cliente cliente = new Cliente(clienteDto.getNome(), clienteDto.getSobrenome(), clienteDto.getEmail(), clienteDto.getSexo(), clienteDto.getCpf(), clienteDto.getSenha(), clienteDto.getPerfil());
             clienteDao.save(cliente);
             cliente.setSenha("");
             return cliente;
