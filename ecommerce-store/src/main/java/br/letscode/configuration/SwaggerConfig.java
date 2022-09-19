@@ -12,8 +12,8 @@ public class SwaggerConfig {
     public OpenAPI springShopOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Ecconmmerce API")
-                        .description("Lets Code - Banco do Brasil")
+                        .title("Ecommerce Projeto Final")
+                        .description("Thiago Teixeira de Faria - Cerberus 786")
                         .version("v0.0.1")
                 );
     }

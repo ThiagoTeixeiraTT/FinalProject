@@ -5,17 +5,17 @@ import java.math.BigDecimal;
 
 public class ProdutoDto {
 
-    private long id;
+    private long idProduto;
     private String nome;
     private BigDecimal preco;
     private String descricao;
 
     public long getId() {
-        return id;
+        return idProduto;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.idProduto = id;
     }
 
     public String getNome() {
@@ -42,8 +42,8 @@ public class ProdutoDto {
         this.descricao = descricao;
     }
 
-    public ProdutoDto(long id, String nome, String preco, String descricao){
-        this.id = id;
+    public ProdutoDto(long idProdudo, String nome, String preco, String descricao){
+        this.idProduto = idProdudo;
         this.nome = nome;
         this.preco = new BigDecimal(preco);
         this.descricao = descricao;
