@@ -6,7 +6,8 @@ import lombok.Setter;
 public enum EnumStatusPedido {
     CONFIRMADO("CONFIRMADO"),
     EMANDAMENTO("EM ANDAMENTO"),
-    CONCLUIDO("CONCLUÍDO");
+    CONCLUIDO("CONCLUÍDO"),
+    CANCELADO("CANCELADO");
 
     @Getter
     @Setter

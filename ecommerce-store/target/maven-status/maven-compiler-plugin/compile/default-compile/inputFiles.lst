@@ -9,8 +9,11 @@ C:\Users\F9329134\TT\ProjetoFinal\FinalProject\ecommerce-store\src\main\java\br\
 C:\Users\F9329134\TT\ProjetoFinal\FinalProject\ecommerce-store\src\main\java\br\letscode\dao\PedidoDao.java
 C:\Users\F9329134\TT\ProjetoFinal\FinalProject\ecommerce-store\src\main\java\br\letscode\models\Pedido.java
 C:\Users\F9329134\TT\ProjetoFinal\FinalProject\ecommerce-store\src\main\java\br\letscode\endpoints\ClienteEndpoints.java
+C:\Users\F9329134\TT\ProjetoFinal\FinalProject\ecommerce-store\src\main\java\br\letscode\endpoints\PedidoEndpoints.java
 C:\Users\F9329134\TT\ProjetoFinal\FinalProject\ecommerce-store\src\main\java\br\letscode\dto\PedidoDto.java
+C:\Users\F9329134\TT\ProjetoFinal\FinalProject\ecommerce-store\src\main\java\br\letscode\services\impl\PedidoServiceImpl.java
 C:\Users\F9329134\TT\ProjetoFinal\FinalProject\ecommerce-store\src\main\java\br\letscode\dao\ProdutoDao.java
+C:\Users\F9329134\TT\ProjetoFinal\FinalProject\ecommerce-store\src\main\java\br\letscode\services\PedidoService.java
 C:\Users\F9329134\TT\ProjetoFinal\FinalProject\ecommerce-store\src\main\java\br\letscode\models\Cliente.java
 C:\Users\F9329134\TT\ProjetoFinal\FinalProject\ecommerce-store\src\main\java\br\letscode\dto\ProdutoDto.java
 C:\Users\F9329134\TT\ProjetoFinal\FinalProject\ecommerce-store\src\main\java\br\letscode\services\ClienteService.java

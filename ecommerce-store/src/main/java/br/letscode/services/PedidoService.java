@@ -13,6 +13,6 @@ public interface PedidoService {
 
     boolean atualizarStatus(Long idPedido, EnumStatusPedido novoStatus);
 
-    boolean cacelarPedido(long idPedido);
+    boolean deletarPedido(long idPedido);
 
 }
