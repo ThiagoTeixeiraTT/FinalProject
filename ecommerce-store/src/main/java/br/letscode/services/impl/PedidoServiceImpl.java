@@ -5,13 +5,13 @@ import br.letscode.dao.PedidoDao;
 import br.letscode.dao.ProdutoDao;
 import br.letscode.dto.PedidoDto;
 import br.letscode.models.AtualizacaoStatusPedido;
-import br.letscode.models.EnumStatusPedido;
 import br.letscode.models.Pedido;
 import br.letscode.services.PedidoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,7 +40,8 @@ public class PedidoServiceImpl implements PedidoService {
         try {
             Pedido pedido = new Pedido(clienteDao.getById(pedidoDto.getIdCliente()),
                     produtoDao.getById(pedidoDto.getIdProduto()), pedidoDto.getQuantidade());
-                    pedido.setDataPedido(LocalDateTime.now());
+            pedido.setDataPedido(LocalDateTime.now());
+            pedido.setValorTotal(new BigDecimal(pedido.getProduto().getPreco()).multiply(BigDecimal.valueOf(pedido.getQuantidade())));   
             pedidoDao.save(pedido);
             return true;
         } catch (Exception e) {

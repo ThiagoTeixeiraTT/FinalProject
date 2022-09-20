@@ -1,5 +1,7 @@
 package br.letscode.models;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
 import javax.persistence.*;
@@ -24,7 +26,7 @@ public class Pedido {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idCliente")
     private Cliente cliente;
-    
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idProduto")
     private Produto produto;
@@ -32,15 +34,19 @@ public class Pedido {
     @Column(name = "quantidade")
     private long quantidade;
 
+    @Column(name = "ValorTotal")
+    private String valorTotal;
+
     @Column(name = "data")
-    private LocalDateTime DataPedido;
+    private LocalDateTime dataPedido;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private EnumStatusPedido status;
 
-    public void setStatus (EnumStatusPedido status) {
-        this.status = status;
+    public void setValorTotal(BigDecimal valBd) {
+        this.valorTotal = valBd.setScale(2, RoundingMode.HALF_UP).toString();
+
     }
 
     public Pedido(Cliente cliente, Produto produto, long quantidade) {
@@ -48,7 +54,7 @@ public class Pedido {
         this.produto = produto;
         this.quantidade = quantidade;
         this.status = EnumStatusPedido.CONFIRMADO;
-        this.DataPedido = LocalDateTime.now();
+        this.dataPedido = LocalDateTime.now();
     }
 
 }

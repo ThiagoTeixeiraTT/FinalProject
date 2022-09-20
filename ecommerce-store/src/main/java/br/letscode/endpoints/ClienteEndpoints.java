@@ -17,46 +17,42 @@ public class ClienteEndpoints {
     @Autowired
     ClienteService clienteService;
 
-
-    @RequestMapping(path="/cliente", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(path = "/cliente", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Cliente>> getAllCients() {
         List<Cliente> clienteList = clienteService.listarTodosClientes();
 
         return ResponseEntity.ok(clienteList);
     }
 
-    @RequestMapping(path="/cliente", method = RequestMethod.POST)
+    @RequestMapping(path = "/cliente", method = RequestMethod.POST)
     public ResponseEntity<String> novoCliente(@RequestBody ClienteDto cliente) {
         boolean sucesso = clienteService.novoCliente(cliente);
 
-        if(sucesso) {
+        if (sucesso) {
             return new ResponseEntity<String>("Cliente criado com sucesso!", HttpStatus.CREATED);
-        }
-        else {
+        } else {
             return new ResponseEntity<String>("Criacao do cliente falhou!", HttpStatus.BAD_REQUEST);
         }
     }
 
-    @RequestMapping(path="/cliente", method = RequestMethod.PUT)
+    @RequestMapping(path = "/cliente", method = RequestMethod.PUT)
     public ResponseEntity<String> atualizarCliente(@RequestBody Cliente cliente) {
         boolean sucesso = clienteService.atualizarCliente(cliente);
 
-        if(sucesso) {
+        if (sucesso) {
             return new ResponseEntity<String>("Cliente atualizado com sucesso!", HttpStatus.CREATED);
-        }
-        else {
+        } else {
             return new ResponseEntity<String>("Atualizacao do cliente falhou!", HttpStatus.BAD_REQUEST);
         }
     }
 
-    @RequestMapping(path="/cliente/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/cliente/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<String> removerCliente(@PathVariable long id) {
         boolean sucesso = clienteService.removerCliente(id);
 
-        if(sucesso) {
+        if (sucesso) {
             return new ResponseEntity<String>("Cliente deletado com sucesso!", HttpStatus.OK);
-        }
-        else {
+        } else {
             return new ResponseEntity<String>("Remocao do cliente falhou!", HttpStatus.BAD_REQUEST);
         }
     }

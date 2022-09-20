@@ -23,43 +23,43 @@ public class ProdutosEndpoints {
 
     @Autowired
     ProdutoService produtoService;
-    
+
     // Cria produto.
     @RequestMapping(path = "/produto", method = RequestMethod.POST)
     public ResponseEntity<String> novoProduto(@RequestBody ProdutoDto produto) {
         boolean sucesso = produtoService.novoProduto(produto);
-        
+
         if (sucesso) {
             return new ResponseEntity<String>("Produto criado com sucesso!", HttpStatus.CREATED);
         } else {
             return new ResponseEntity<String>("Criacao do produto falhou!", HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     // Atualiza produto
     @RequestMapping(path = "/produto", method = RequestMethod.PUT)
     public ResponseEntity<String> atualizarProduto(@RequestBody Produto produto) {
         boolean sucesso = produtoService.atualizarProduto(produto);
-        
+
         if (sucesso) {
             return new ResponseEntity<String>("Produto atualizado com sucesso!", HttpStatus.CREATED);
         } else {
             return new ResponseEntity<String>("Atualizacao do produto falhou!", HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     // Deleta produto por Id.
     @RequestMapping(path = "/produto/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<String> removerProduto(@PathVariable long id) {
         boolean sucesso = produtoService.removerProduto(id);
-        
+
         if (sucesso) {
             return new ResponseEntity<String>("Produto deletado com sucesso!", HttpStatus.OK);
         } else {
             return new ResponseEntity<String>("Remocao do produto falhou!", HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     // Retorna produto por Id.
     @RequestMapping(path = "/produto/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getProductById(@PathVariable long id) {
@@ -69,9 +69,9 @@ public class ProdutosEndpoints {
         } else {
             return ResponseEntity.ok(produto);
         }
-        
+
     }
-    
+
     // Lista todos os produtos.
     @RequestMapping(path = "/produtos", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Produto>> getAllProducts() {

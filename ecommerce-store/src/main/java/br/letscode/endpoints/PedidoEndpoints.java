@@ -4,7 +4,6 @@ import br.letscode.dto.PedidoDto;
 import br.letscode.models.AtualizacaoStatusPedido;
 import br.letscode.models.Pedido;
 import br.letscode.services.PedidoService;
-import nonapi.io.github.classgraph.json.Id;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,40 +18,38 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import java.util.List;
 
-
-
 @RestController
 public class PedidoEndpoints {
 
     @Autowired
     PedidoService pedidoService;
-    
+
     // Cria pedido.
     @RequestMapping(path = "/pedido", method = RequestMethod.POST)
     public ResponseEntity<String> novoPedido(@RequestBody PedidoDto pedido) {
         boolean sucesso = pedidoService.novoPedido(pedido);
-        
+
         if (sucesso) {
             return new ResponseEntity<String>("Pedido realizado com sucesso!", HttpStatus.CREATED);
         } else {
             return new ResponseEntity<String>("Criacao do pedido falhou!", HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     // Atualiza pedido
     @RequestMapping(path = "/pedido", method = RequestMethod.PUT)
     public ResponseEntity<String> atualizarStatusPedido(@RequestBody AtualizacaoStatusPedido status) {
         boolean sucesso = pedidoService.atualizarStatus(status);
-        
+
         if (sucesso) {
             return new ResponseEntity<String>("Status atualizado com sucesso!", HttpStatus.CREATED);
         } else {
             return new ResponseEntity<String>("Atualizacao do status falhou!", HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     // Lista todos os pedidos de um cliente (por idCliente).
-    @RequestMapping(path="/pedidos/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(path = "/pedidos/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Pedido>> getAllPedidos(@PathVariable long id) {
         List<Pedido> listaPedidos = pedidoService.listarPedidosDoCliente(id);
 
@@ -63,7 +60,7 @@ public class PedidoEndpoints {
     @RequestMapping(path = "/pedido/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deletarPedido(@PathVariable long id) {
         boolean sucesso = pedidoService.deletarPedido(id);
-        
+
         if (sucesso) {
             return new ResponseEntity<String>("Pedido deletado com sucesso!", HttpStatus.OK);
         } else {

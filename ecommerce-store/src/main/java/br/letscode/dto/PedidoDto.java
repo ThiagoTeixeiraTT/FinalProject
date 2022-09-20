@@ -13,7 +13,7 @@ public class PedidoDto {
     private Long idCliente;
     private Long idProduto;
     private long quantidade;
-    private LocalDateTime DataPedido;
+    private LocalDateTime dataPedido;
     private EnumStatusPedido status;
     
     public PedidoDto(Long cliente, Long produto, long quantidade) {

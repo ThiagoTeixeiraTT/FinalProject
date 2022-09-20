@@ -6,10 +6,10 @@ import lombok.Setter;
 public class AtualizacaoStatusPedido {
 
     @Getter
-    @Setter 
+    @Setter
     private Long idPedido;
     @Getter
-    @Setter 
+    @Setter
     private EnumStatusPedido status;
 
     public AtualizacaoStatusPedido(Long idPedido, EnumStatusPedido status) {
