@@ -12,11 +12,14 @@ public class PedidoDto {
 
     private Long idCliente;
     private Long idProduto;
-    private Long quantidade;
+    private long quantidade;
     private LocalDateTime DataPedido;
     private EnumStatusPedido status;
     
-    public PedidoDto(Long cliente, Long produto, Long quantidade) {
+    public PedidoDto(Long cliente, Long produto, long quantidade) {
+        this.idCliente = cliente;
+        this.idProduto = produto;
+        this.quantidade = quantidade;
 
     }
 

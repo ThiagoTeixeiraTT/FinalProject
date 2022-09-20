@@ -51,8 +51,9 @@ public class PedidoEndpoints {
         }
     }
     
+    // Lista todos os pedidos de um cliente (por idCliente).
     @RequestMapping(path="/pedidos/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Pedido>> getPedidosById(@PathVariable long id) {
+    public ResponseEntity<List<Pedido>> getAllPedidos(@PathVariable long id) {
         List<Pedido> listaPedidos = pedidoService.listarPedidosDoCliente(id);
 
         return ResponseEntity.ok(listaPedidos);

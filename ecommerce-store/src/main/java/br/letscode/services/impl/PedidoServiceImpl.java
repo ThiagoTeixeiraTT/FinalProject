@@ -27,7 +27,7 @@ public class PedidoServiceImpl implements PedidoService {
     ClienteDao clienteDao;
 
     @Override
-    public List<Pedido> listarPedidosDoCliente(long idCliente) {
+    public List<Pedido> listarPedidosDoCliente(Long idCliente) {
         return pedidoDao.findAll()
         .stream()
         .filter(pedidos -> idCliente == pedidos.getCliente().getId())
@@ -41,7 +41,6 @@ public class PedidoServiceImpl implements PedidoService {
             Pedido pedido = new Pedido(clienteDao.getById(pedidoDto.getIdCliente()),
                     produtoDao.getById(pedidoDto.getIdProduto()), pedidoDto.getQuantidade());
                     pedido.setDataPedido(LocalDateTime.now());
-                    pedido.setStatus(EnumStatusPedido.CONFIRMADO);
             pedidoDao.save(pedido);
             return true;
         } catch (Exception e) {

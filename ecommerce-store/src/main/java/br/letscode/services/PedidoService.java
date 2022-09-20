@@ -7,7 +7,7 @@ import br.letscode.models.AtualizacaoStatusPedido;
 import java.util.List;
 
 public interface PedidoService {
-    List<Pedido> listarPedidosDoCliente(long idCliente);
+    List<Pedido> listarPedidosDoCliente(Long id);
 
     boolean novoPedido(PedidoDto pedidoDto);
 
