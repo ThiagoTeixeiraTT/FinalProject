@@ -1,8 +1,8 @@
 package br.letscode.services;
 
 import br.letscode.dto.PedidoDto;
-import br.letscode.models.EnumStatusPedido;
 import br.letscode.models.Pedido;
+import br.letscode.models.AtualizacaoStatusPedido;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public interface PedidoService {
 
     boolean novoPedido(PedidoDto pedidoDto);
 
-    boolean atualizarStatus(Long idPedido, EnumStatusPedido novoStatus);
+    boolean atualizarStatus(AtualizacaoStatusPedido status);
 
     boolean deletarPedido(long idPedido);
 

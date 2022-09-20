@@ -17,10 +17,14 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idPedido;
 
-    @Column(name = "cliente")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idCliente", referencedColumnName = "idCliente")
     private Cliente cliente;
-    @Column(name = "produto")
+    
+    @JoinColumn(name = "idProduto", referencedColumnName = "idProduto")
+    @OneToOne(fetch = FetchType.LAZY)
     private Produto produto;
+
     @Column(name = "quantidade")
     private Long quantidade;
     @Column(name = "data")
